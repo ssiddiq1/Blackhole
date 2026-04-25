@@ -1,0 +1,3 @@
+/Users/shayaansiddique/Blackhole/build/CMakeFiles/Blackhole.dir
+/Users/shayaansiddique/Blackhole/build/CMakeFiles/edit_cache.dir
+/Users/shayaansiddique/Blackhole/build/CMakeFiles/rebuild_cache.dir
