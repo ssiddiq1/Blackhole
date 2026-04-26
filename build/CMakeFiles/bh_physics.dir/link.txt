@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbh_physics.a CMakeFiles/bh_physics.dir/src/physics/Geodesic.cpp.o
+/usr/bin/ranlib libbh_physics.a

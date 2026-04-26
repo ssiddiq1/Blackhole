@@ -1,0 +1,28 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/shayaansiddique/Bhole/src/app/Window.cpp" "CMakeFiles/bh_app.dir/src/app/Window.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/app/Window.cpp.o.d"
+  "/Users/shayaansiddique/Bhole/src/app/main.cpp" "CMakeFiles/bh_app.dir/src/app/main.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/app/main.cpp.o.d"
+  "/Users/shayaansiddique/Bhole/src/render/Renderer.cpp" "CMakeFiles/bh_app.dir/src/render/Renderer.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/render/Renderer.cpp.o.d"
+  "/Users/shayaansiddique/Bhole/src/render/TextureLoader.cpp" "CMakeFiles/bh_app.dir/src/render/TextureLoader.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/render/TextureLoader.cpp.o.d"
+  "/Users/shayaansiddique/Bhole/src/render/stb_impl.cpp" "CMakeFiles/bh_app.dir/src/render/stb_impl.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/render/stb_impl.cpp.o.d"
+  "/Users/shayaansiddique/Bhole/src/ui/ImGuiLayer.cpp" "CMakeFiles/bh_app.dir/src/ui/ImGuiLayer.cpp.o" "gcc" "CMakeFiles/bh_app.dir/src/ui/ImGuiLayer.cpp.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

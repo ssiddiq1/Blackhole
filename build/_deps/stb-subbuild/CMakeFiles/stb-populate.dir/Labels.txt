@@ -1,0 +1,14 @@
+# Target labels
+ stb-populate
+# Source files and their labels
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/CMakeFiles/stb-populate
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/CMakeFiles/stb-populate.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/CMakeFiles/stb-populate-complete.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-build.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-configure.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-download.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-install.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-mkdir.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-patch.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-test.rule
+/Users/shayaansiddique/Bhole/build/_deps/stb-subbuild/stb-populate-prefix/src/stb-populate-stamp/stb-populate-update.rule

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbh_sim.a CMakeFiles/bh_sim.dir/src/sim/ParticleSystem.cpp.o CMakeFiles/bh_sim.dir/src/sim/Scene.cpp.o
+/usr/bin/ranlib libbh_sim.a

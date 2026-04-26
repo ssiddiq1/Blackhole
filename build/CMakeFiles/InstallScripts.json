@@ -1,7 +1,12 @@
 {
 	"InstallScripts" : 
 	[
-		"/Users/shayaansiddique/Blackhole/build/cmake_install.cmake"
+		"/Users/shayaansiddique/Bhole/build/cmake_install.cmake",
+		"/Users/shayaansiddique/Bhole/build/_deps/glm-build/cmake_install.cmake",
+		"/Users/shayaansiddique/Bhole/build/_deps/glm-build/glm/cmake_install.cmake",
+		"/Users/shayaansiddique/Bhole/build/_deps/doctest-build/cmake_install.cmake",
+		"/Users/shayaansiddique/Bhole/build/_deps/glfw-build/cmake_install.cmake",
+		"/Users/shayaansiddique/Bhole/build/_deps/glfw-build/src/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

@@ -57,13 +57,23 @@ RM = /opt/homebrew/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/shayaansiddique/Blackhole
+CMAKE_SOURCE_DIR = /Users/shayaansiddique/Bhole
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/shayaansiddique/Blackhole/build
+CMAKE_BINARY_DIR = /Users/shayaansiddique/Bhole/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -85,11 +95,56 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
+	/opt/homebrew/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
+	/opt/homebrew/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shayaansiddique/Blackhole/build/CMakeFiles /Users/shayaansiddique/Blackhole/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shayaansiddique/Bhole/build/CMakeFiles /Users/shayaansiddique/Bhole/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shayaansiddique/Blackhole/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/shayaansiddique/Bhole/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +172,189 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Blackhole
+# Target rules for targets named imgui
 
 # Build rule for target.
-Blackhole: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Blackhole
-.PHONY : Blackhole
+imgui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 imgui
+.PHONY : imgui
 
 # fast build rule for target.
-Blackhole/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/build
-.PHONY : Blackhole/fast
+imgui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/build
+.PHONY : imgui/fast
+
+#=============================================================================
+# Target rules for targets named bh_physics
+
+# Build rule for target.
+bh_physics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bh_physics
+.PHONY : bh_physics
+
+# fast build rule for target.
+bh_physics/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_physics.dir/build.make CMakeFiles/bh_physics.dir/build
+.PHONY : bh_physics/fast
+
+#=============================================================================
+# Target rules for targets named bh_sim
+
+# Build rule for target.
+bh_sim: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bh_sim
+.PHONY : bh_sim
+
+# fast build rule for target.
+bh_sim/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/build
+.PHONY : bh_sim/fast
+
+#=============================================================================
+# Target rules for targets named bh_tests
+
+# Build rule for target.
+bh_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bh_tests
+.PHONY : bh_tests
+
+# fast build rule for target.
+bh_tests/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_tests.dir/build.make CMakeFiles/bh_tests.dir/build
+.PHONY : bh_tests/fast
+
+#=============================================================================
+# Target rules for targets named bh_app
+
+# Build rule for target.
+bh_app: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bh_app
+.PHONY : bh_app
+
+# fast build rule for target.
+bh_app/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/build
+.PHONY : bh_app/fast
+
+#=============================================================================
+# Target rules for targets named glm
+
+# Build rule for target.
+glm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glm
+.PHONY : glm
+
+# fast build rule for target.
+glm/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glm-build/glm/CMakeFiles/glm.dir/build.make _deps/glm-build/glm/CMakeFiles/glm.dir/build
+.PHONY : glm/fast
+
+#=============================================================================
+# Target rules for targets named doctest_with_main
+
+# Build rule for target.
+doctest_with_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 doctest_with_main
+.PHONY : doctest_with_main
+
+# fast build rule for target.
+doctest_with_main/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/doctest-build/CMakeFiles/doctest_with_main.dir/build.make _deps/doctest-build/CMakeFiles/doctest_with_main.dir/build
+.PHONY : doctest_with_main/fast
+
+#=============================================================================
+# Target rules for targets named uninstall
+
+# Build rule for target.
+uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
+.PHONY : uninstall
+
+# fast build rule for target.
+uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/CMakeFiles/uninstall.dir/build.make _deps/glfw-build/CMakeFiles/uninstall.dir/build
+.PHONY : uninstall/fast
+
+#=============================================================================
+# Target rules for targets named glfw
+
+# Build rule for target.
+glfw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw
+.PHONY : glfw
+
+# fast build rule for target.
+glfw/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/glfw.dir/build.make _deps/glfw-build/src/CMakeFiles/glfw.dir/build
+.PHONY : glfw/fast
+
+#=============================================================================
+# Target rules for targets named update_mappings
+
+# Build rule for target.
+update_mappings: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 update_mappings
+.PHONY : update_mappings
+
+# fast build rule for target.
+update_mappings/fast:
+	$(MAKE) $(MAKESILENT) -f _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build.make _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build
+.PHONY : update_mappings/fast
+
+_deps/imgui-src/backends/imgui_impl_glfw.o: _deps/imgui-src/backends/imgui_impl_glfw.cpp.o
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.o
+
+# target to build an object file
+_deps/imgui-src/backends/imgui_impl_glfw.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.o
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.cpp.o
+
+_deps/imgui-src/backends/imgui_impl_glfw.i: _deps/imgui-src/backends/imgui_impl_glfw.cpp.i
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.i
+
+# target to preprocess a source file
+_deps/imgui-src/backends/imgui_impl_glfw.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.i
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.cpp.i
+
+_deps/imgui-src/backends/imgui_impl_glfw.s: _deps/imgui-src/backends/imgui_impl_glfw.cpp.s
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.s
+
+# target to generate assembly for a file
+_deps/imgui-src/backends/imgui_impl_glfw.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_glfw.cpp.s
+.PHONY : _deps/imgui-src/backends/imgui_impl_glfw.cpp.s
+
+_deps/imgui-src/backends/imgui_impl_opengl3.o: _deps/imgui-src/backends/imgui_impl_opengl3.cpp.o
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.o
+
+# target to build an object file
+_deps/imgui-src/backends/imgui_impl_opengl3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.o
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.cpp.o
+
+_deps/imgui-src/backends/imgui_impl_opengl3.i: _deps/imgui-src/backends/imgui_impl_opengl3.cpp.i
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.i
+
+# target to preprocess a source file
+_deps/imgui-src/backends/imgui_impl_opengl3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.i
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.cpp.i
+
+_deps/imgui-src/backends/imgui_impl_opengl3.s: _deps/imgui-src/backends/imgui_impl_opengl3.cpp.s
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.s
+
+# target to generate assembly for a file
+_deps/imgui-src/backends/imgui_impl_opengl3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/backends/imgui_impl_opengl3.cpp.s
+.PHONY : _deps/imgui-src/backends/imgui_impl_opengl3.cpp.s
 
 _deps/imgui-src/imgui.o: _deps/imgui-src/imgui.cpp.o
 .PHONY : _deps/imgui-src/imgui.o
 
 # target to build an object file
 _deps/imgui-src/imgui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui.cpp.o
 .PHONY : _deps/imgui-src/imgui.cpp.o
 
 _deps/imgui-src/imgui.i: _deps/imgui-src/imgui.cpp.i
@@ -142,7 +362,7 @@ _deps/imgui-src/imgui.i: _deps/imgui-src/imgui.cpp.i
 
 # target to preprocess a source file
 _deps/imgui-src/imgui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui.cpp.i
 .PHONY : _deps/imgui-src/imgui.cpp.i
 
 _deps/imgui-src/imgui.s: _deps/imgui-src/imgui.cpp.s
@@ -150,7 +370,7 @@ _deps/imgui-src/imgui.s: _deps/imgui-src/imgui.cpp.s
 
 # target to generate assembly for a file
 _deps/imgui-src/imgui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui.cpp.s
 .PHONY : _deps/imgui-src/imgui.cpp.s
 
 _deps/imgui-src/imgui_draw.o: _deps/imgui-src/imgui_draw.cpp.o
@@ -158,7 +378,7 @@ _deps/imgui-src/imgui_draw.o: _deps/imgui-src/imgui_draw.cpp.o
 
 # target to build an object file
 _deps/imgui-src/imgui_draw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_draw.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_draw.cpp.o
 .PHONY : _deps/imgui-src/imgui_draw.cpp.o
 
 _deps/imgui-src/imgui_draw.i: _deps/imgui-src/imgui_draw.cpp.i
@@ -166,7 +386,7 @@ _deps/imgui-src/imgui_draw.i: _deps/imgui-src/imgui_draw.cpp.i
 
 # target to preprocess a source file
 _deps/imgui-src/imgui_draw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_draw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_draw.cpp.i
 .PHONY : _deps/imgui-src/imgui_draw.cpp.i
 
 _deps/imgui-src/imgui_draw.s: _deps/imgui-src/imgui_draw.cpp.s
@@ -174,7 +394,7 @@ _deps/imgui-src/imgui_draw.s: _deps/imgui-src/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 _deps/imgui-src/imgui_draw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_draw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_draw.cpp.s
 .PHONY : _deps/imgui-src/imgui_draw.cpp.s
 
 _deps/imgui-src/imgui_tables.o: _deps/imgui-src/imgui_tables.cpp.o
@@ -182,7 +402,7 @@ _deps/imgui-src/imgui_tables.o: _deps/imgui-src/imgui_tables.cpp.o
 
 # target to build an object file
 _deps/imgui-src/imgui_tables.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_tables.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_tables.cpp.o
 .PHONY : _deps/imgui-src/imgui_tables.cpp.o
 
 _deps/imgui-src/imgui_tables.i: _deps/imgui-src/imgui_tables.cpp.i
@@ -190,7 +410,7 @@ _deps/imgui-src/imgui_tables.i: _deps/imgui-src/imgui_tables.cpp.i
 
 # target to preprocess a source file
 _deps/imgui-src/imgui_tables.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_tables.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_tables.cpp.i
 .PHONY : _deps/imgui-src/imgui_tables.cpp.i
 
 _deps/imgui-src/imgui_tables.s: _deps/imgui-src/imgui_tables.cpp.s
@@ -198,7 +418,7 @@ _deps/imgui-src/imgui_tables.s: _deps/imgui-src/imgui_tables.cpp.s
 
 # target to generate assembly for a file
 _deps/imgui-src/imgui_tables.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_tables.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_tables.cpp.s
 .PHONY : _deps/imgui-src/imgui_tables.cpp.s
 
 _deps/imgui-src/imgui_widgets.o: _deps/imgui-src/imgui_widgets.cpp.o
@@ -206,7 +426,7 @@ _deps/imgui-src/imgui_widgets.o: _deps/imgui-src/imgui_widgets.cpp.o
 
 # target to build an object file
 _deps/imgui-src/imgui_widgets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_widgets.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_widgets.cpp.o
 .PHONY : _deps/imgui-src/imgui_widgets.cpp.o
 
 _deps/imgui-src/imgui_widgets.i: _deps/imgui-src/imgui_widgets.cpp.i
@@ -214,7 +434,7 @@ _deps/imgui-src/imgui_widgets.i: _deps/imgui-src/imgui_widgets.cpp.i
 
 # target to preprocess a source file
 _deps/imgui-src/imgui_widgets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_widgets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_widgets.cpp.i
 .PHONY : _deps/imgui-src/imgui_widgets.cpp.i
 
 _deps/imgui-src/imgui_widgets.s: _deps/imgui-src/imgui_widgets.cpp.s
@@ -222,200 +442,248 @@ _deps/imgui-src/imgui_widgets.s: _deps/imgui-src/imgui_widgets.cpp.s
 
 # target to generate assembly for a file
 _deps/imgui-src/imgui_widgets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/_deps/imgui-src/imgui_widgets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/imgui.dir/build.make CMakeFiles/imgui.dir/_deps/imgui-src/imgui_widgets.cpp.s
 .PHONY : _deps/imgui-src/imgui_widgets.cpp.s
 
-src/GLDebugMessageCallback.o: src/GLDebugMessageCallback.cc.o
-.PHONY : src/GLDebugMessageCallback.o
+src/app/Window.o: src/app/Window.cpp.o
+.PHONY : src/app/Window.o
 
 # target to build an object file
-src/GLDebugMessageCallback.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/GLDebugMessageCallback.cc.o
-.PHONY : src/GLDebugMessageCallback.cc.o
+src/app/Window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/Window.cpp.o
+.PHONY : src/app/Window.cpp.o
 
-src/GLDebugMessageCallback.i: src/GLDebugMessageCallback.cc.i
-.PHONY : src/GLDebugMessageCallback.i
+src/app/Window.i: src/app/Window.cpp.i
+.PHONY : src/app/Window.i
 
 # target to preprocess a source file
-src/GLDebugMessageCallback.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/GLDebugMessageCallback.cc.i
-.PHONY : src/GLDebugMessageCallback.cc.i
+src/app/Window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/Window.cpp.i
+.PHONY : src/app/Window.cpp.i
 
-src/GLDebugMessageCallback.s: src/GLDebugMessageCallback.cc.s
-.PHONY : src/GLDebugMessageCallback.s
+src/app/Window.s: src/app/Window.cpp.s
+.PHONY : src/app/Window.s
 
 # target to generate assembly for a file
-src/GLDebugMessageCallback.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/GLDebugMessageCallback.cc.s
-.PHONY : src/GLDebugMessageCallback.cc.s
+src/app/Window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/Window.cpp.s
+.PHONY : src/app/Window.cpp.s
 
-src/imgui_impl_glfw.o: src/imgui_impl_glfw.cpp.o
-.PHONY : src/imgui_impl_glfw.o
+src/app/main.o: src/app/main.cpp.o
+.PHONY : src/app/main.o
 
 # target to build an object file
-src/imgui_impl_glfw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_glfw.cpp.o
-.PHONY : src/imgui_impl_glfw.cpp.o
+src/app/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/main.cpp.o
+.PHONY : src/app/main.cpp.o
 
-src/imgui_impl_glfw.i: src/imgui_impl_glfw.cpp.i
-.PHONY : src/imgui_impl_glfw.i
+src/app/main.i: src/app/main.cpp.i
+.PHONY : src/app/main.i
 
 # target to preprocess a source file
-src/imgui_impl_glfw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_glfw.cpp.i
-.PHONY : src/imgui_impl_glfw.cpp.i
+src/app/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/main.cpp.i
+.PHONY : src/app/main.cpp.i
 
-src/imgui_impl_glfw.s: src/imgui_impl_glfw.cpp.s
-.PHONY : src/imgui_impl_glfw.s
+src/app/main.s: src/app/main.cpp.s
+.PHONY : src/app/main.s
 
 # target to generate assembly for a file
-src/imgui_impl_glfw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_glfw.cpp.s
-.PHONY : src/imgui_impl_glfw.cpp.s
+src/app/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/app/main.cpp.s
+.PHONY : src/app/main.cpp.s
 
-src/imgui_impl_opengl3.o: src/imgui_impl_opengl3.cpp.o
-.PHONY : src/imgui_impl_opengl3.o
+src/physics/Geodesic.o: src/physics/Geodesic.cpp.o
+.PHONY : src/physics/Geodesic.o
 
 # target to build an object file
-src/imgui_impl_opengl3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_opengl3.cpp.o
-.PHONY : src/imgui_impl_opengl3.cpp.o
+src/physics/Geodesic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_physics.dir/build.make CMakeFiles/bh_physics.dir/src/physics/Geodesic.cpp.o
+.PHONY : src/physics/Geodesic.cpp.o
 
-src/imgui_impl_opengl3.i: src/imgui_impl_opengl3.cpp.i
-.PHONY : src/imgui_impl_opengl3.i
+src/physics/Geodesic.i: src/physics/Geodesic.cpp.i
+.PHONY : src/physics/Geodesic.i
 
 # target to preprocess a source file
-src/imgui_impl_opengl3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_opengl3.cpp.i
-.PHONY : src/imgui_impl_opengl3.cpp.i
+src/physics/Geodesic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_physics.dir/build.make CMakeFiles/bh_physics.dir/src/physics/Geodesic.cpp.i
+.PHONY : src/physics/Geodesic.cpp.i
 
-src/imgui_impl_opengl3.s: src/imgui_impl_opengl3.cpp.s
-.PHONY : src/imgui_impl_opengl3.s
+src/physics/Geodesic.s: src/physics/Geodesic.cpp.s
+.PHONY : src/physics/Geodesic.s
 
 # target to generate assembly for a file
-src/imgui_impl_opengl3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/imgui_impl_opengl3.cpp.s
-.PHONY : src/imgui_impl_opengl3.cpp.s
+src/physics/Geodesic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_physics.dir/build.make CMakeFiles/bh_physics.dir/src/physics/Geodesic.cpp.s
+.PHONY : src/physics/Geodesic.cpp.s
 
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+src/render/Renderer.o: src/render/Renderer.cpp.o
+.PHONY : src/render/Renderer.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/render/Renderer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/Renderer.cpp.o
+.PHONY : src/render/Renderer.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/render/Renderer.i: src/render/Renderer.cpp.i
+.PHONY : src/render/Renderer.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/render/Renderer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/Renderer.cpp.i
+.PHONY : src/render/Renderer.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/render/Renderer.s: src/render/Renderer.cpp.s
+.PHONY : src/render/Renderer.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/render/Renderer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/Renderer.cpp.s
+.PHONY : src/render/Renderer.cpp.s
 
-src/render.o: src/render.cpp.o
-.PHONY : src/render.o
+src/render/TextureLoader.o: src/render/TextureLoader.cpp.o
+.PHONY : src/render/TextureLoader.o
 
 # target to build an object file
-src/render.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/render.cpp.o
-.PHONY : src/render.cpp.o
+src/render/TextureLoader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/TextureLoader.cpp.o
+.PHONY : src/render/TextureLoader.cpp.o
 
-src/render.i: src/render.cpp.i
-.PHONY : src/render.i
+src/render/TextureLoader.i: src/render/TextureLoader.cpp.i
+.PHONY : src/render/TextureLoader.i
 
 # target to preprocess a source file
-src/render.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/render.cpp.i
-.PHONY : src/render.cpp.i
+src/render/TextureLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/TextureLoader.cpp.i
+.PHONY : src/render/TextureLoader.cpp.i
 
-src/render.s: src/render.cpp.s
-.PHONY : src/render.s
+src/render/TextureLoader.s: src/render/TextureLoader.cpp.s
+.PHONY : src/render/TextureLoader.s
 
 # target to generate assembly for a file
-src/render.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/render.cpp.s
-.PHONY : src/render.cpp.s
+src/render/TextureLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/TextureLoader.cpp.s
+.PHONY : src/render/TextureLoader.cpp.s
 
-src/shader.o: src/shader.cpp.o
-.PHONY : src/shader.o
+src/render/stb_impl.o: src/render/stb_impl.cpp.o
+.PHONY : src/render/stb_impl.o
 
 # target to build an object file
-src/shader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/shader.cpp.o
-.PHONY : src/shader.cpp.o
+src/render/stb_impl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/stb_impl.cpp.o
+.PHONY : src/render/stb_impl.cpp.o
 
-src/shader.i: src/shader.cpp.i
-.PHONY : src/shader.i
+src/render/stb_impl.i: src/render/stb_impl.cpp.i
+.PHONY : src/render/stb_impl.i
 
 # target to preprocess a source file
-src/shader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/shader.cpp.i
-.PHONY : src/shader.cpp.i
+src/render/stb_impl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/stb_impl.cpp.i
+.PHONY : src/render/stb_impl.cpp.i
 
-src/shader.s: src/shader.cpp.s
-.PHONY : src/shader.s
+src/render/stb_impl.s: src/render/stb_impl.cpp.s
+.PHONY : src/render/stb_impl.s
 
 # target to generate assembly for a file
-src/shader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/shader.cpp.s
-.PHONY : src/shader.cpp.s
+src/render/stb_impl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/render/stb_impl.cpp.s
+.PHONY : src/render/stb_impl.cpp.s
 
-src/stb_image.o: src/stb_image.cpp.o
-.PHONY : src/stb_image.o
+src/sim/ParticleSystem.o: src/sim/ParticleSystem.cpp.o
+.PHONY : src/sim/ParticleSystem.o
 
 # target to build an object file
-src/stb_image.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/stb_image.cpp.o
-.PHONY : src/stb_image.cpp.o
+src/sim/ParticleSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/ParticleSystem.cpp.o
+.PHONY : src/sim/ParticleSystem.cpp.o
 
-src/stb_image.i: src/stb_image.cpp.i
-.PHONY : src/stb_image.i
+src/sim/ParticleSystem.i: src/sim/ParticleSystem.cpp.i
+.PHONY : src/sim/ParticleSystem.i
 
 # target to preprocess a source file
-src/stb_image.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/stb_image.cpp.i
-.PHONY : src/stb_image.cpp.i
+src/sim/ParticleSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/ParticleSystem.cpp.i
+.PHONY : src/sim/ParticleSystem.cpp.i
 
-src/stb_image.s: src/stb_image.cpp.s
-.PHONY : src/stb_image.s
+src/sim/ParticleSystem.s: src/sim/ParticleSystem.cpp.s
+.PHONY : src/sim/ParticleSystem.s
 
 # target to generate assembly for a file
-src/stb_image.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/stb_image.cpp.s
-.PHONY : src/stb_image.cpp.s
+src/sim/ParticleSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/ParticleSystem.cpp.s
+.PHONY : src/sim/ParticleSystem.cpp.s
 
-src/texture.o: src/texture.cpp.o
-.PHONY : src/texture.o
+src/sim/Scene.o: src/sim/Scene.cpp.o
+.PHONY : src/sim/Scene.o
 
 # target to build an object file
-src/texture.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/texture.cpp.o
-.PHONY : src/texture.cpp.o
+src/sim/Scene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/Scene.cpp.o
+.PHONY : src/sim/Scene.cpp.o
 
-src/texture.i: src/texture.cpp.i
-.PHONY : src/texture.i
+src/sim/Scene.i: src/sim/Scene.cpp.i
+.PHONY : src/sim/Scene.i
 
 # target to preprocess a source file
-src/texture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/texture.cpp.i
-.PHONY : src/texture.cpp.i
+src/sim/Scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/Scene.cpp.i
+.PHONY : src/sim/Scene.cpp.i
 
-src/texture.s: src/texture.cpp.s
-.PHONY : src/texture.s
+src/sim/Scene.s: src/sim/Scene.cpp.s
+.PHONY : src/sim/Scene.s
 
 # target to generate assembly for a file
-src/texture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Blackhole.dir/build.make CMakeFiles/Blackhole.dir/src/texture.cpp.s
-.PHONY : src/texture.cpp.s
+src/sim/Scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_sim.dir/build.make CMakeFiles/bh_sim.dir/src/sim/Scene.cpp.s
+.PHONY : src/sim/Scene.cpp.s
+
+src/ui/ImGuiLayer.o: src/ui/ImGuiLayer.cpp.o
+.PHONY : src/ui/ImGuiLayer.o
+
+# target to build an object file
+src/ui/ImGuiLayer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/ui/ImGuiLayer.cpp.o
+.PHONY : src/ui/ImGuiLayer.cpp.o
+
+src/ui/ImGuiLayer.i: src/ui/ImGuiLayer.cpp.i
+.PHONY : src/ui/ImGuiLayer.i
+
+# target to preprocess a source file
+src/ui/ImGuiLayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/ui/ImGuiLayer.cpp.i
+.PHONY : src/ui/ImGuiLayer.cpp.i
+
+src/ui/ImGuiLayer.s: src/ui/ImGuiLayer.cpp.s
+.PHONY : src/ui/ImGuiLayer.s
+
+# target to generate assembly for a file
+src/ui/ImGuiLayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_app.dir/build.make CMakeFiles/bh_app.dir/src/ui/ImGuiLayer.cpp.s
+.PHONY : src/ui/ImGuiLayer.cpp.s
+
+tests/test_geodesic.o: tests/test_geodesic.cpp.o
+.PHONY : tests/test_geodesic.o
+
+# target to build an object file
+tests/test_geodesic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_tests.dir/build.make CMakeFiles/bh_tests.dir/tests/test_geodesic.cpp.o
+.PHONY : tests/test_geodesic.cpp.o
+
+tests/test_geodesic.i: tests/test_geodesic.cpp.i
+.PHONY : tests/test_geodesic.i
+
+# target to preprocess a source file
+tests/test_geodesic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_tests.dir/build.make CMakeFiles/bh_tests.dir/tests/test_geodesic.cpp.i
+.PHONY : tests/test_geodesic.cpp.i
+
+tests/test_geodesic.s: tests/test_geodesic.cpp.s
+.PHONY : tests/test_geodesic.s
+
+# target to generate assembly for a file
+tests/test_geodesic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bh_tests.dir/build.make CMakeFiles/bh_tests.dir/tests/test_geodesic.cpp.s
+.PHONY : tests/test_geodesic.cpp.s
 
 # Help Target
 help:
@@ -424,8 +692,28 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... Blackhole"
+	@echo "... test"
+	@echo "... uninstall"
+	@echo "... update_mappings"
+	@echo "... bh_app"
+	@echo "... bh_physics"
+	@echo "... bh_sim"
+	@echo "... bh_tests"
+	@echo "... doctest_with_main"
+	@echo "... glfw"
+	@echo "... glm"
+	@echo "... imgui"
+	@echo "... _deps/imgui-src/backends/imgui_impl_glfw.o"
+	@echo "... _deps/imgui-src/backends/imgui_impl_glfw.i"
+	@echo "... _deps/imgui-src/backends/imgui_impl_glfw.s"
+	@echo "... _deps/imgui-src/backends/imgui_impl_opengl3.o"
+	@echo "... _deps/imgui-src/backends/imgui_impl_opengl3.i"
+	@echo "... _deps/imgui-src/backends/imgui_impl_opengl3.s"
 	@echo "... _deps/imgui-src/imgui.o"
 	@echo "... _deps/imgui-src/imgui.i"
 	@echo "... _deps/imgui-src/imgui.s"
@@ -438,30 +726,36 @@ help:
 	@echo "... _deps/imgui-src/imgui_widgets.o"
 	@echo "... _deps/imgui-src/imgui_widgets.i"
 	@echo "... _deps/imgui-src/imgui_widgets.s"
-	@echo "... src/GLDebugMessageCallback.o"
-	@echo "... src/GLDebugMessageCallback.i"
-	@echo "... src/GLDebugMessageCallback.s"
-	@echo "... src/imgui_impl_glfw.o"
-	@echo "... src/imgui_impl_glfw.i"
-	@echo "... src/imgui_impl_glfw.s"
-	@echo "... src/imgui_impl_opengl3.o"
-	@echo "... src/imgui_impl_opengl3.i"
-	@echo "... src/imgui_impl_opengl3.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/render.o"
-	@echo "... src/render.i"
-	@echo "... src/render.s"
-	@echo "... src/shader.o"
-	@echo "... src/shader.i"
-	@echo "... src/shader.s"
-	@echo "... src/stb_image.o"
-	@echo "... src/stb_image.i"
-	@echo "... src/stb_image.s"
-	@echo "... src/texture.o"
-	@echo "... src/texture.i"
-	@echo "... src/texture.s"
+	@echo "... src/app/Window.o"
+	@echo "... src/app/Window.i"
+	@echo "... src/app/Window.s"
+	@echo "... src/app/main.o"
+	@echo "... src/app/main.i"
+	@echo "... src/app/main.s"
+	@echo "... src/physics/Geodesic.o"
+	@echo "... src/physics/Geodesic.i"
+	@echo "... src/physics/Geodesic.s"
+	@echo "... src/render/Renderer.o"
+	@echo "... src/render/Renderer.i"
+	@echo "... src/render/Renderer.s"
+	@echo "... src/render/TextureLoader.o"
+	@echo "... src/render/TextureLoader.i"
+	@echo "... src/render/TextureLoader.s"
+	@echo "... src/render/stb_impl.o"
+	@echo "... src/render/stb_impl.i"
+	@echo "... src/render/stb_impl.s"
+	@echo "... src/sim/ParticleSystem.o"
+	@echo "... src/sim/ParticleSystem.i"
+	@echo "... src/sim/ParticleSystem.s"
+	@echo "... src/sim/Scene.o"
+	@echo "... src/sim/Scene.i"
+	@echo "... src/sim/Scene.s"
+	@echo "... src/ui/ImGuiLayer.o"
+	@echo "... src/ui/ImGuiLayer.i"
+	@echo "... src/ui/ImGuiLayer.s"
+	@echo "... tests/test_geodesic.o"
+	@echo "... tests/test_geodesic.i"
+	@echo "... tests/test_geodesic.s"
 .PHONY : help
 
 
